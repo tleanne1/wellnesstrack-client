@@ -1,11 +1,25 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center text-2xl">
-      <h1>🚀 WellnessTrack Frontend is working!</h1>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
